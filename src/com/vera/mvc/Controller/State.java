@@ -7,7 +7,8 @@ package com.vera.mvc.Controller;
 
 
 import com.vera.mvc.model.Model;
-import com.vera.mvc.model.MyShape;
+import com.vera.mvc.model.decorator.MyShape;
+import com.vera.mvc.model.decorator.ShapeDecorator;
 import java.awt.Color;
 import java.awt.geom.RectangularShape;
 
@@ -19,7 +20,7 @@ public class State {
    //from controller 
    Model model;
    // menu created 
-   MyShape shape;
+   ShapeDecorator shape;
    Color color;
    MyShape.FillBehavior fb;
    RectangularShape rectangularShape;
@@ -28,7 +29,7 @@ public class State {
         this.model = model;
     }
 
-    public void setShape(MyShape shape) {
+    public void setShape(ShapeDecorator shape) {
         this.shape = shape;
     }
 
@@ -50,9 +51,9 @@ public class State {
         model.setSampleShape(shape);
     }
 
-    public MyShape getShape() {
-        return shape;
-    }
+//    public MyShape getShape() {
+//        return shape;
+//    }
     
     
 }

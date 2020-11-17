@@ -6,7 +6,7 @@
 package com.vera.mvc.view;
 
 import com.vera.mvc.Controller.State;
-import com.vera.mvc.model.MyShape;
+import com.vera.mvc.model.decorator.MyShape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;

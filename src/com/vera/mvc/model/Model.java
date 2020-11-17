@@ -5,6 +5,8 @@
  */
 package com.vera.mvc.model;
 
+import com.vera.mvc.model.decorator.MyShape;
+import com.vera.mvc.model.decorator.ShapeDecorator;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -16,11 +18,11 @@ import java.util.Observable;
  */
 public class Model extends Observable {
 
-    MyShape currentShape;
-    MyShape sampleShape;
-    ArrayList<MyShape> list;
+    ShapeDecorator currentShape;
+    ShapeDecorator sampleShape;
+    ArrayList<ShapeDecorator> list;
 
-    public void setSampleShape(MyShape sampleShape) {
+    public void setSampleShape(ShapeDecorator sampleShape) {
         this.sampleShape = sampleShape;
     }
 
@@ -28,7 +30,7 @@ public class Model extends Observable {
         list = new ArrayList<>();
     }
 
-    public Model(MyShape sampleShape) {
+    public Model(ShapeDecorator sampleShape) {
         this.sampleShape = sampleShape;
         list = new ArrayList<>();
     }
@@ -50,7 +52,7 @@ public class Model extends Observable {
 
     public void draw(Graphics2D g) {
         if (list != null) {
-            for (MyShape s : list) {
+            for (ShapeDecorator s : list) {
                 s.draw(g);
             }
         }

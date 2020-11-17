@@ -9,7 +9,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import com.vera.mvc.model.Model;
-import com.vera.mvc.model.MyShape;
+import com.vera.mvc.model.decorator.BorderDecorator;
+import com.vera.mvc.model.decorator.MyShape;
+import com.vera.mvc.model.decorator.ShapeDecorator;
 import com.vera.mvc.view.MyFrame;
 import com.vera.mvc.view.MyPanel;
 import java.awt.Color;
@@ -24,11 +26,15 @@ public class Controller {
     MyPanel panel;
     Point2D [] pd;
     State state;
-    MyShape shape;
+    ShapeDecorator shape;
     public Controller() {
         model = new Model();
         state = new State(model);
-        state.setShape(new MyShape(new Rectangle2D.Double()));
+        shape = new BorderDecorator(new MyShape(new Rectangle2D.Double()));
+        shape.setParametr(10);
+        shape = new BorderDecorator(shape);
+        shape.setParametr(30);
+        state.setShape(shape);//new BorderDecorator(new MyShape(new Rectangle2D.Double())).setParametr(10));
         state.setColor(Color.yellow);
         panel = new MyPanel();
         panel.setController(this);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vera.mvc.model;
+package com.vera.mvc.model.decorator;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -16,11 +16,12 @@ import java.awt.geom.RectangularShape;
  *
  * @author Wera
  */
-public class MyShape {
+public class MyShape implements ShapeDecorator{
 
     Color color;
     RectangularShape shape;
     FillBehavior fb;
+    
 
     public MyShape(RectangularShape shape) {
         this.shape = shape;
@@ -52,7 +53,8 @@ public class MyShape {
         shape.setFrameFromDiagonal(pd[0], pd[1]);
     }
 
-    void draw(Graphics2D g) {
+    @Override
+    public void draw(Graphics2D g) {
         fb.draw(g,color,shape);
     }
 
@@ -64,15 +66,30 @@ public class MyShape {
         return fb;
     }
 
-    public MyShape clone() {
-        MyShape s = new MyShape();       
+    public ShapeDecorator clone() {
+        ShapeDecorator s = new MyShape();       
         RectangularShape s1 = (RectangularShape) shape.clone();      
-        s.setColor(color);
-        s.setShape(s1);
-        s.fb = this.fb; 
+        ((MyShape)s).setColor(color);
+       ((MyShape)s).setShape(s1);
+       ((MyShape)s).fb = this.fb; 
         return s;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setParametr(int p) {
+        
+    }
+
+    @Override
+    public RectangularShape getShape() {
+        return shape;
+    }
+
+    
    
 
     /////////////////////inner enum/////////////////////////////////////
